@@ -23,7 +23,7 @@ const transporter =
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone, message } = body;
+    const { name, email, phone, message, course } = body;
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -36,6 +36,7 @@ export async function POST(request: Request) {
     const html = `<strong>Sender:</strong> ${name}<br/>
     <strong>Email:</strong> ${email}<br/>
     <strong>Phone:</strong> ${phone ?? "N/A"}<br/><br/>
+    ${course ? `<strong>Requested Course:</strong> ${course}<br/><br/>` : ""}
     <strong>Message:</strong><br/>${message}`;
 
     if (resend) {

@@ -31,6 +31,20 @@ export type ServiceIcon =
   | "briefcase"
   | "award";
 
+type CourseModule = {
+  title: string;
+  topics: string[];
+};
+
+export type CourseOutline = Record<string, CourseModule[]>;
+
+export type CourseTreeNode = {
+  label: string;
+  description?: string;
+  courses?: { name: string; note?: string }[];
+  children?: CourseTreeNode[];
+};
+
 export type Service = {
   title: string;
   description: string;
@@ -210,7 +224,688 @@ export const serviceSlugs = [
       "Security tracks covering ASA, Firepower, and ISE policies",
       "SD-WAN design, deployment, and performance instrumentation",
     ],
-    courses: ["CCNA", "CCNP Enterprise", "CCNP Security", "CCIE Enterprise"],
+    courses: [
+      "CCNA",
+      "CCNP Enterprise",
+      "CCNP Security",
+      "CCIE Enterprise Infrastructure",
+    ],
+    courseTree: [
+      {
+        label: "Entry Level",
+        description:
+          "Technician credentials that validate foundational troubleshooting and restoration.",
+        courses: [
+          { name: "CCT" },
+          { name: "CCST Networking" },
+          { name: "CCST Cybersecurity" },
+        ],
+      },
+      {
+        label: "Associate Level",
+        description:
+          "Core associate certifications across networking, automation, and security operations.",
+        courses: [
+          { name: "CCNA" },
+          { name: "DevNet Associate" },
+          { name: "CyberOps Associate" },
+        ],
+      },
+      {
+        label: "Professional Level",
+        description:
+          "Each CCNP track requires its core exam plus one concentration of your choice.",
+        children: [
+          {
+            label: "CCNP Enterprise",
+            description:
+              "Build on ENCOR then specialize in routing, wireless, SD-WAN, design, or automation.",
+            courses: [
+              { name: "350-401 ENCOR", note: "Core" },
+              { name: "300-410 ENARSI" },
+              { name: "300-415 ENSDWI" },
+              { name: "300-420 ENSLD" },
+              { name: "300-425 ENWLSD" },
+              { name: "300-430 ENWLSI" },
+              { name: "300-435 ENAUTO" },
+            ],
+          },
+          {
+            label: "CCNP Security",
+            description:
+              "SCOR core plus specialist concentrations in firewalls, ISE, email/web, VPN, or automation.",
+            courses: [
+              { name: "350-701 SCOR", note: "Core" },
+              { name: "300-710 SNCF" },
+              { name: "300-715 SISE" },
+              { name: "300-720 SESA" },
+              { name: "300-725 SWSA" },
+              { name: "300-730 SVPN" },
+              { name: "300-735 SAUTO" },
+            ],
+          },
+          {
+            label: "CCNP Data Center",
+            courses: [
+              { name: "350-601 DCCOR", note: "Core" },
+              { name: "300-610 DCID" },
+              { name: "300-615 DCIT" },
+              { name: "300-620 DCACI" },
+              { name: "300-635 DCAUTO" },
+              { name: "300-640 DCAI" },
+            ],
+          },
+          {
+            label: "CCNP Collaboration",
+            courses: [
+              { name: "350-801 CLCOR", note: "Core" },
+              { name: "300-810 CLICA" },
+              { name: "300-815 CLACCM" },
+              { name: "300-820 CLCEI" },
+              { name: "300-830 CLCCE" },
+              { name: "300-835 CLAUTO" },
+            ],
+          },
+          {
+            label: "CCNP Service Provider",
+            courses: [
+              { name: "350-501 SPCOR", note: "Core" },
+              { name: "300-510 SPRI" },
+              { name: "300-515 SPVI" },
+              { name: "300-535 SPAUTO" },
+              { name: "300-540 SPCNI" },
+            ],
+          },
+          {
+            label: "DevNet Professional",
+            description:
+              "DEVCOR core plus the DevOps concentration for automation specialists.",
+            courses: [
+              { name: "350-901 DEVCOR", note: "Core" },
+              { name: "300-910 DEVOPS" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Expert Level",
+        description:
+          "Pass the track core exam, then the 8-hour lab to earn your CCIE/DevNet Expert.",
+        courses: [
+          { name: "CCIE Enterprise Infrastructure" },
+          { name: "CCIE Enterprise Wireless" },
+          { name: "CCIE Security" },
+          { name: "CCIE Data Center" },
+          { name: "CCIE Service Provider" },
+          { name: "DevNet Expert" },
+        ],
+      },
+      {
+        label: "Design Expert",
+        description: "CCDE validates architecture mastery via written + practical exams.",
+        courses: [{ name: "CCDE" }],
+      },
+    ],
+    courseDetails: {
+      CCT: [
+        {
+          title: "Hardware Diagnostics",
+          topics: [
+            "Identify Cisco rack components and replaceable units",
+            "Perform loopback tests, LED interpretation, and smart licensing checks",
+            "Document findings and prepare RMA-ready evidence",
+          ],
+        },
+        {
+          title: "IOS & Service Restoration",
+          topics: [
+            "Console connectivity, ROMMON recovery, and password resets",
+            "Upgrading and downgrading images from TFTP/USB",
+            "Remote support etiquette and safety procedures",
+          ],
+        },
+      ],
+      "CCST Networking": [
+        {
+          title: "Networking Foundations",
+          topics: [
+            "OSI vs. TCP/IP models, IPv4/IPv6, and subnetting",
+            "Switching, VLANs, trunking, and wireless fundamentals",
+            "Common LAN/WAN topologies and cabling standards",
+          ],
+        },
+        {
+          title: "Network Ops & Security",
+          topics: [
+            "CLI basics, device hardening, and troubleshooting workflow",
+            "QoS, monitoring, and logging essentials",
+            "Risk management, encryption, and zero-trust mindset",
+          ],
+        },
+      ],
+      "CCST Cybersecurity": [
+        {
+          title: "Security Fundamentals",
+          topics: [
+            "Threat actors, attack surfaces, and MITRE ATT&CK concepts",
+            "CIA triad, risk response, and policy frameworks",
+            "Identity, authentication, and access control techniques",
+          ],
+        },
+        {
+          title: "Operations & Response",
+          topics: [
+            "Network security tooling (firewalls, IPS, secure web/email)",
+            "Endpoint monitoring, logging, and alert triage",
+            "Incident response lifecycle and communication playbooks",
+          ],
+        },
+      ],
+      CCNA: [
+        {
+          title: "Network Fundamentals",
+          topics: [
+            "TCP/IP, IPv4/IPv6 addressing, subnetting",
+            "Switching concepts, VLANs, trunking",
+            "Wireless fundamentals and controller basics",
+          ],
+        },
+        {
+          title: "Network Access & Connectivity",
+          topics: [
+            "Spanning Tree, EtherChannel, and ACL policies",
+            "Routing protocols, static routes, and first-hop redundancy",
+            "NTP, DHCP, NAT, and DNS services",
+          ],
+        },
+        {
+          title: "Security & Automation",
+          topics: [
+            "AAA, VPN fundamentals, and segmentation",
+            "Cisco DNA Center basics and telemetry",
+            "REST APIs, Python, and automation workflows",
+          ],
+        },
+      ],
+      "DevNet Associate": [
+        {
+          title: "Software Fundamentals",
+          topics: [
+            "Python, REST, JSON, and Git collaboration",
+            "CI/CD concepts, unit testing, and container basics",
+            "HTTP, authentication, and secure coding practices",
+          ],
+        },
+        {
+          title: "Cisco Platform Automation",
+          topics: [
+            "Automating Meraki, DNA Center, Webex, and IOS XE",
+            "Model-driven programmability (YANG, NETCONF/RESTCONF)",
+            "Telemetry, webhooks, and event-driven automation",
+          ],
+        },
+      ],
+      "CyberOps Associate": [
+        {
+          title: "Security Monitoring",
+          topics: [
+            "Network intrusion analysis and packet inspection",
+            "SIEM workflows, log correlation, and baselining",
+            "Hunting with MITRE ATT&CK and kill-chain mapping",
+          ],
+        },
+        {
+          title: "Incident Response & Automation",
+          topics: [
+            "Playbook creation, evidence handling, and reporting",
+            "Threat intelligence enrichment and triage",
+            "Automation scripts, APIs, and orchestration pipelines",
+          ],
+        },
+      ],
+      "350-401 ENCOR": [
+        {
+          title: "Architecture & Virtualization",
+          topics: [
+            "Enterprise campus design, SDA, and SD-WAN underlay",
+            "Layer 2/3 virtualization, VXLAN, and LISP",
+            "Wireless architecture, QoS, and multicast services",
+          ],
+        },
+        {
+          title: "Infrastructure & Assurance",
+          topics: [
+            "Advanced routing (EIGRP, OSPF, BGP) and policy control",
+            "Network assurance, telemetry, and programmability",
+            "Security services, automation, and infrastructure ops",
+          ],
+        },
+      ],
+      "300-410 ENARSI": [
+        {
+          title: "Advanced Routing",
+          topics: [
+            "EIGRP, OSPF, and BGP troubleshooting at scale",
+            "Route redistribution, filtering, and path manipulation",
+            "MPLS L3VPN and VPNv4 routing",
+          ],
+        },
+        {
+          title: "Infrastructure Services",
+          topics: [
+            "DMVPN, FlexVPN, and IPsec design/troubleshooting",
+            "EEM, NetFlow, and SLA monitoring",
+            "Route maps, policy-based routing, and QoS",
+          ],
+        },
+      ],
+      "300-415 ENSDWI": [
+        {
+          title: "SD-WAN Architecture",
+          topics: [
+            "vManage, vBond, vSmart roles and control-plane security",
+            "Fabric bring-up, templates, and policies",
+            "Transport independence, segmentation, and automation",
+          ],
+        },
+        {
+          title: "Operations & Optimization",
+          topics: [
+            "Application-aware routing and QoS",
+            "Monitoring, troubleshooting, and upgrades",
+            "Cloud onRamp, security, and integration patterns",
+          ],
+        },
+      ],
+      "300-420 ENSLD": [
+        {
+          title: "Design Methodologies",
+          topics: [
+            "Requirement gathering, gap analysis, and constraints",
+            "Hierarchical campus, WAN, and data center design",
+            "High availability, QoS, and security considerations",
+          ],
+        },
+        {
+          title: "Fabric & SD-WAN Design",
+          topics: [
+            "SDA roles, wireless integration, and policy design",
+            "SD-WAN topology selection and segmentation",
+            "Automation, assurance, and lifecycle tooling",
+          ],
+        },
+      ],
+      "300-425 ENWLSD": [
+        {
+          title: "Wireless Design",
+          topics: [
+            "RF planning, survey methodology, predictive modeling",
+            "Controller and AP placement, redundancy, roaming",
+            "Capacity planning for high-density deployments",
+          ],
+        },
+        {
+          title: "Advanced Services",
+          topics: [
+            "Location services, IoT, and mesh",
+            "Security design (ISE, TrustSec, segmentation)",
+            "Monitoring, optimization, and troubleshooting workflows",
+          ],
+        },
+      ],
+      "300-430 ENWLSI": [
+        {
+          title: "Wireless Implementations",
+          topics: [
+            "Multicast, QoS, and high-availability deployments",
+            "FlexConnect, OfficeExtend, and remote branch design",
+            "Advanced roaming, client profiling, and troubleshooting",
+          ],
+        },
+        {
+          title: "Security & Assurance",
+          topics: [
+            "ISE integration, TrustSec, and segmentation",
+            "CleanAir, AVC, and spectrum optimization",
+            "Monitoring, logging, and DNA Center assurance",
+          ],
+        },
+      ],
+      "300-435 ENAUTO": [
+        {
+          title: "Programmability Foundations",
+          topics: [
+            "Python, RESTCONF/NETCONF/YANG, and Git integration",
+            "Automation frameworks (Ansible, Terraform, NSO)",
+            "Telemetry (gRPC, model-driven streaming)",
+          ],
+        },
+        {
+          title: "Automating Enterprise Use Cases",
+          topics: [
+            "Automating SDA, SD-WAN, wireless, and campus devices",
+            "CI/CD pipelines for network changes",
+            "Compliance, validation, and rollback strategies",
+          ],
+        },
+      ],
+      "350-701 SCOR": [
+        {
+          title: "Security Architecture",
+          topics: [
+            "Zero-trust, segmentation, and secure network design",
+            "Cloud, virtual, and endpoint security considerations",
+            "Automation, telemetry, and analytics strategy",
+          ],
+        },
+        {
+          title: "Core Security Technologies",
+          topics: [
+            "Content security, network security, and secure access",
+            "Visibility and enforcement (ISE, Stealthwatch, Umbrella)",
+            "Security automation and programmability",
+          ],
+        },
+      ],
+      "300-710 SNCF": [
+        {
+          title: "Next-Gen Firewall",
+          topics: [
+            "Firepower Management Center policies and deployments",
+            "Intrusion, malware, URL, and SSL/TLS inspection",
+            "Performance tuning, clustering, and HA",
+          ],
+        },
+        {
+          title: "Operations & Automation",
+          topics: [
+            "Event correlation, dashboards, and troubleshooting",
+            "FMC REST APIs, scripting, and automation hooks",
+            "Integration with SIEM/SOAR ecosystems",
+          ],
+        },
+      ],
+      "300-715 SISE": [
+        {
+          title: "ISE Deployment",
+          topics: [
+            "ISE personas, scalability, and redundancy",
+            "Policy sets, profiling, posture, and guest workflows",
+            "Device administration (TACACS+) and pxGrid sharing",
+          ],
+        },
+        {
+          title: "Access Control & TrustSec",
+          topics: [
+            "802.1X, MAB, and onboarding design",
+            "SGT propagation, TrustSec matrices, and SDA integration",
+            "Monitoring, troubleshooting, and reporting",
+          ],
+        },
+      ],
+      "300-720 SESA": [
+        {
+          title: "Email Threat Defense",
+          topics: [
+            "ESA deployment, routing, and authentication",
+            "Spam, phishing, malware, and outbreak filters",
+            "Content filters, DLP, and encryption services",
+          ],
+        },
+        {
+          title: "Operations & Reporting",
+          topics: [
+            "Message tracking, logs, and troubleshooting",
+            "AMP, Threat Grid, and Talos intelligence integration",
+            "Centralized management with SMA",
+          ],
+        },
+      ],
+      "300-725 SWSA": [
+        {
+          title: "Secure Web Architecture",
+          topics: [
+            "WSA deployment modes and policy design",
+            "HTTPS decryption, filtering, and malware defense",
+            "Integration with Umbrella, AMP, and content controls",
+          ],
+        },
+        {
+          title: "Operations & Analytics",
+          topics: [
+            "Monitoring dashboards, troubleshooting, and logs",
+            "Reporting, data retention, and compliance",
+            "Automation via APIs and centralized management",
+          ],
+        },
+      ],
+      "300-730 SVPN": [
+        {
+          title: "Secure Remote Access",
+          topics: [
+            "Site-to-site and remote-access IPsec design",
+            "FlexVPN, DMVPN, GETVPN, and SSL VPN solutions",
+            "High availability, load balancing, and QoS",
+          ],
+        },
+        {
+          title: "Operations & Troubleshooting",
+          topics: [
+            "Verification, logging, and common failure domains",
+            "Cert-based authentication and IKEv2 tuning",
+            "Integration with ISE, Duo, and SD-WAN",
+          ],
+        },
+      ],
+      "300-735 SAUTO": [
+        {
+          title: "Security Programmability",
+          topics: [
+            "REST, gRPC, and NETCONF interfaces across security platforms",
+            "Python/Ansible automation for FMC, ISE, Umbrella, SecureX",
+            "Event-driven architecture and workflows",
+          ],
+        },
+        {
+          title: "DevSecOps Operations",
+          topics: [
+            "CI/CD integration, testing, and policy as code",
+            "SOAR playbooks, pxGrid, and SecureX APIs",
+            "Telemetry correlation and remediation pipelines",
+          ],
+        },
+      ],
+      "350-601 DCCOR": [
+        {
+          title: "Compute & Networking",
+          topics: [
+            "UCS architecture, HyperFlex, and compute policies",
+            "NX-OS, OTV, VXLAN EVPN, and fabric interconnects",
+            "Storage networking (FC, FCoE, iSCSI) fundamentals",
+          ],
+        },
+        {
+          title: "Automation & Security",
+          topics: [
+            "DC telemetry, programmability, and ACI/NX-OS APIs",
+            "Security controls, segmentation, and monitoring",
+            "Operations, maintenance, and disaster recovery",
+          ],
+        },
+      ],
+      "300-610 DCID": [
+        {
+          title: "Design Methodology",
+          topics: [
+            "Requirements, constraints, and risk assessment",
+            "High availability, scaling, and performance considerations",
+            "Multi-site, fabric, and hybrid cloud design patterns",
+          ],
+        },
+        {
+          title: "Compute & Storage Design",
+          topics: [
+            "UCS domain design, policies, and resource pools",
+            "Storage connectivity, QoS, and data protection",
+            "Security, automation, and lifecycle planning",
+          ],
+        },
+      ],
+      "300-615 DCIT": [
+        {
+          title: "Troubleshooting Methodologies",
+          topics: [
+            "Structured approach, logging, and telemetry usage",
+            "Layer 2/3 troubleshooting on NX-OS",
+            "UCS fabric, storage, and virtualization issues",
+          ],
+        },
+        {
+          title: "Automation & Tools",
+          topics: [
+            "Python/REST APIs for diagnostics",
+            "DCNM/ACI troubleshooting utilities",
+            "Escalation, documentation, and post-mortems",
+          ],
+        },
+      ],
+      "300-620 DCACI": [
+        {
+          title: "ACI Fabric Implementation",
+          topics: [
+            "APIC policies, tenants, VRFs, and contracts",
+            "Spine/leaf provisioning, multi-site, and MST",
+            "Integrating bare metal, virtual, and L4-7 services",
+          ],
+        },
+        {
+          title: "Operations & Automation",
+          topics: [
+            "Health scores, telemetry, and troubleshooting",
+            "APIC REST API, Python, and Ansible playbooks",
+            "Migration strategies and best practices",
+          ],
+        },
+      ],
+      "300-635 DCAUTO": [
+        {
+          title: "Programmability",
+          topics: [
+            "UCS Director, DCNM, and ACI APIs",
+            "Automation tools (Ansible, Terraform, Python) for the data center",
+            "Telemetry streaming and model-driven operations",
+          ],
+        },
+        {
+          title: "Use Case Automation",
+          topics: [
+            "Day-0/1 provisioning and compliance",
+            "Service orchestration and approvals",
+            "Change control, validation, and rollbacks",
+          ],
+        },
+      ],
+      "300-640 DCAI": [
+        {
+          title: "AI Infrastructure",
+          topics: [
+            "GPU-optimized architectures and NVIDIA integrations",
+            "High-speed fabrics (RoCE, NVMe, Ethernet) for AI workloads",
+            "Storage throughput, caching, and pipeline tuning",
+          ],
+        },
+        {
+          title: "Operations & MLOps",
+          topics: [
+            "Monitoring model training pipelines",
+            "Security, data governance, and tenancy considerations",
+            "Automation and resource scheduling for AI clusters",
+          ],
+        },
+      ],
+      "350-801 CLCOR": [
+        {
+          title: "Collaboration Infrastructure",
+          topics: [
+            "Cisco Unified CM, Expressway, Unity, and IM&P architecture",
+            "QoS, media resources, and conferencing design",
+            "Security, compliance, and hybrid solutions",
+          ],
+        },
+        {
+          title: "Automation & Troubleshooting",
+          topics: [
+            "APIs, xAPI, and scripting for collaboration platforms",
+            "Monitoring, logging, and troubleshooting methodology",
+            "Cloud/hybrid services (Webex, Webex Calling) integration",
+          ],
+        },
+      ],
+      "300-810 CLICA": [
+        {
+          title: "Applications & Messaging",
+          topics: [
+            "Unity features, voicemail, and auto-attendant design",
+            "Jabber/Webex messaging, presence, and compliance",
+            "Third-party app integration and APIs",
+          ],
+        },
+        {
+          title: "Automation & Monitoring",
+          topics: [
+            "Application troubleshooting, logs, and diagnostics",
+            "Automation for provisioning and notifications",
+            "High availability and disaster recovery planning",
+          ],
+        },
+      ],
+      "300-815 CLACCM": [
+        {
+          title: "Call Control & Mobility",
+          topics: [
+            "Device onboarding, dial plan design, and numbering",
+            "Mobility features, roaming, and remote worker solutions",
+            "SRST, SAF, and PSTN connectivity",
+          ],
+        },
+        {
+          title: "Policy & Security",
+          topics: [
+            "CAC, QoS, and media resource control",
+            "Encrypted calling, certificates, and signaling security",
+            "Troubleshooting using RTMT, traces, and logs",
+          ],
+        },
+      ],
+      "300-820 CLCEI": [
+        {
+          title: "Cloud & Edge Solutions",
+          topics: [
+            "Expressway series, MRA, and hybrid services",
+            "Webex Edge Audio/Video, PSTN integration",
+            "Edge security and policy enforcement",
+          ],
+        },
+        {
+          title: "Operations & Automation",
+          topics: [
+            "Monitoring, analytics, and proactive alerting",
+            "API-driven provisioning and workflows",
+            "Failover scenarios and change management",
+          ],
+        },
+      ],
+      "300-830 CLCCE": [
+        {
+          title: "Customer Experience Solutions",
+          topics: [
+            "Contact Center Enterprise architecture, routing, and scripting",
+            "Outbound, mobile agent, and digital channel integration",
+            "Reporting, analytics, and workforce optimization",
+          ],
+        },
+      ],
+    },
   },
   {
     slug: "cloud-training",
@@ -230,6 +925,86 @@ export const serviceSlugs = [
       "Azure Administrator",
       "Google Professional Cloud Architect",
     ],
+    courseDetails: {
+      "AWS Solutions Architect": [
+        {
+          title: "Design for High Availability",
+          topics: [
+            "VPC architectures, subnets, and routing",
+            "Elastic Load Balancing and Auto Scaling",
+            "Hybrid connectivity (DX, VPN) and security controls",
+          ],
+        },
+        {
+          title: "Data & Application Services",
+          topics: [
+            "RDS, DynamoDB, Aurora design considerations",
+            "S3 storage classes, Glacier, and lifecycle policies",
+            "Serverless patterns with Lambda and API Gateway",
+          ],
+        },
+        {
+          title: "Operations & Automation",
+          topics: [
+            "CloudWatch metrics, logging, and tracing",
+            "IaC with CloudFormation and CDK",
+            "Cost optimization and Well-Architected reviews",
+          ],
+        },
+      ],
+      "Azure Administrator": [
+        {
+          title: "Manage Azure Identities & Governance",
+          topics: [
+            "Entra ID, conditional access, and RBAC",
+            "Policy, Blueprints, and governance design",
+            "Hybrid identity and synchronization",
+          ],
+        },
+        {
+          title: "Implement & Manage Storage",
+          topics: [
+            "Storage accounts, redundancy, and security",
+            "Azure Files, Blob lifecycle, and backups",
+            "Disaster recovery and site recovery plans",
+          ],
+        },
+        {
+          title: "Deploy & Manage Compute",
+          topics: [
+            "VM networking, availability sets, and scale sets",
+            "AKS cluster deployment and monitoring",
+            "Automation accounts, Desired State Configuration",
+          ],
+        },
+      ],
+      "Google Professional Cloud Architect": [
+        {
+          title: "Designing Reliable Infrastructure",
+          topics: [
+            "VPC, Shared VPC, and hybrid connectivity",
+            "Load balancing, Cloud CDN, and Cloud Armor",
+            "Identity, IAM, and resource hierarchy",
+          ],
+        },
+        {
+          title: "Data Processing & Storage",
+          topics: [
+            "Cloud SQL, Spanner, and Bigtable decisions",
+            "BigQuery optimization and data governance",
+            "Pub/Sub, Dataflow, and event-driven design",
+          ],
+        },
+        {
+          title: "Operations & Security",
+          topics: [
+            "Cloud Operations Suite monitoring and logging",
+            "KMS, Secret Manager, and compliance controls",
+            "Infrastructure automation with Terraform and Deployment Manager",
+          ],
+        },
+      ],
+    },
   },
   {
     slug: "cybersecurity",
@@ -245,6 +1020,80 @@ export const serviceSlugs = [
       "Governance + compliance accelerators for regulated sectors",
     ],
     courses: ["CEH", "CompTIA Security+", "CISM", "CISSP"],
+    courseDetails: {
+      CEH: [
+        {
+          title: "Reconnaissance & Weaponization",
+          topics: [
+            "Open-source intelligence and footprinting",
+            "Vulnerability discovery and exploit frameworks",
+            "Malware, payloads, and evasion techniques",
+          ],
+        },
+        {
+          title: "Exploitation & Post-Exploitation",
+          topics: [
+            "Network, web, and wireless attack vectors",
+            "Privilege escalation and pivoting",
+            "Covering tracks and reporting findings",
+          ],
+        },
+      ],
+      "CompTIA Security+": [
+        {
+          title: "Architecture & Design",
+          topics: [
+            "Enterprise security architecture patterns",
+            "Cloud and virtualization security",
+            "Authentication, authorization, and access control",
+          ],
+        },
+        {
+          title: "Operations & Incident Response",
+          topics: [
+            "Monitoring tools and SIEM integration",
+            "Digital forensics process, evidence handling",
+            "Playbooks for common attack scenarios",
+          ],
+        },
+      ],
+      CISM: [
+        {
+          title: "Governance & Risk",
+          topics: [
+            "Aligning security strategy to business objectives",
+            "Enterprise risk assessments and treatment plans",
+            "Policy frameworks and compliance requirements",
+          ],
+        },
+        {
+          title: "Program Development & Response",
+          topics: [
+            "Security program metrics and reporting",
+            "Incident management lifecycle",
+            "Third-party and supply-chain risk oversight",
+          ],
+        },
+      ],
+      CISSP: [
+        {
+          title: "Security & Risk Management",
+          topics: [
+            "Confidentiality, integrity, availability principles",
+            "Security governance, compliance, and ethics",
+            "Business continuity and disaster recovery",
+          ],
+        },
+        {
+          title: "Communication & Network Security",
+          topics: [
+            "Secure network architecture and segmentation",
+            "Cryptography, PKI, and key management",
+            "Zero-trust and emerging security models",
+          ],
+        },
+      ],
+    },
   },
   {
     slug: "devops",
@@ -264,6 +1113,78 @@ export const serviceSlugs = [
       "HashiCorp Terraform Associate",
       "AZ-400 DevOps Engineer",
     ],
+    courseDetails: {
+      "Certified Kubernetes Administrator": [
+        {
+          title: "Cluster Architecture & Scheduling",
+          topics: [
+            "Control plane components and HA design",
+            "Scheduling policies, taints, and tolerations",
+            "Etcd maintenance and upgrades",
+          ],
+        },
+        {
+          title: "Networking, Services & Ingress",
+          topics: [
+            "CNI plugins, network policies, and service meshes",
+            "Ingress controllers, TLS termination",
+            "Load balancing strategies and troubleshooting",
+          ],
+        },
+        {
+          title: "Workloads & Security",
+          topics: [
+            "StatefulSets, DaemonSets, Jobs, and CronJobs",
+            "RBAC, PodSecurityStandards, and secrets",
+            "Backup/restore, disaster recovery plans",
+          ],
+        },
+      ],
+      "HashiCorp Terraform Associate": [
+        {
+          title: "IaC Fundamentals",
+          topics: [
+            "Providers, resources, and state management",
+            "Workspaces, modules, and code organization",
+            "CLI workflows and automation",
+          ],
+        },
+        {
+          title: "Security & Collaboration",
+          topics: [
+            "Secret handling, remote state backends",
+            "Sentinel policies and governance",
+            "Version control, pipelines, and testing",
+          ],
+        },
+      ],
+      "AZ-400 DevOps Engineer": [
+        {
+          title: "Plan & Implement DevOps Strategies",
+          topics: [
+            "Agile planning with Boards and Backlogs",
+            "Quality gates and branch policies",
+            "Observability and feedback loops",
+          ],
+        },
+        {
+          title: "Develop & Deliver Secure Apps",
+          topics: [
+            "Azure Repos/GitHub workflows",
+            "CI/CD pipelines with YAML templates",
+            "Security scanning, compliance, and release gates",
+          ],
+        },
+        {
+          title: "Operate with Monitoring & Automation",
+          topics: [
+            "Infrastructure as Code with Bicep/Terraform",
+            "Azure Monitor, Log Analytics, and alerts",
+            "ChatOps, runbooks, and incident response",
+          ],
+        },
+      ],
+    },
   },
   {
     slug: "corporate-training",
@@ -283,6 +1204,62 @@ export const serviceSlugs = [
       "Leadership programs",
       "Certification fast-tracks",
     ],
+    courseDetails: {
+      "Custom bootcamps": [
+        {
+          title: "Discovery & Design",
+          topics: [
+            "Skills inventory and stakeholder interviews",
+            "Competency mapping to business OKRs",
+            "Program charter, cadence, and delivery model",
+          ],
+        },
+        {
+          title: "Delivery & Enablement",
+          topics: [
+            "Instructor-led sessions + lab immersions",
+            "Mentor office hours and assessments",
+            "Adoption playbooks and field readiness",
+          ],
+        },
+      ],
+      "Leadership programs": [
+        {
+          title: "Strategic Leadership",
+          topics: [
+            "Executive communication and storytelling",
+            "Change management and stakeholder alignment",
+            "Data-driven decision frameworks",
+          ],
+        },
+        {
+          title: "Technology & Innovation",
+          topics: [
+            "Platform thinking and product mindset",
+            "AI/cloud strategy and risk oversight",
+            "Culture building for high-performing teams",
+          ],
+        },
+      ],
+      "Certification fast-tracks": [
+        {
+          title: "Assessment & Coaching",
+          topics: [
+            "Readiness diagnostics and study plans",
+            "Mentor pairing and office hours",
+            "Exam logistics, vouchers, and tracking",
+          ],
+        },
+        {
+          title: "Simulation & Review",
+          topics: [
+            "Scenario-based labs and graded assignments",
+            "Mock exams with analytics",
+            "Final readiness review and success playbook",
+          ],
+        },
+      ],
+    },
   },
 ];
 

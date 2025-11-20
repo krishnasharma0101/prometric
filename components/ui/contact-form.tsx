@@ -5,7 +5,11 @@ import { Input } from "./input";
 import { Textarea } from "./textarea";
 import { Button } from "./button";
 
-export const ContactForm = () => {
+type ContactFormProps = {
+  initialCourse?: string;
+};
+
+export const ContactForm = ({ initialCourse }: ContactFormProps) => {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
@@ -39,6 +43,20 @@ export const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {initialCourse ? (
+        <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4 text-sm text-primary">
+          <p className="font-semibold uppercase tracking-[0.4em] text-primary">
+            Interested In
+          </p>
+          <p className="mt-1 text-base font-semibold text-primary">
+            {initialCourse}
+          </p>
+          <p className="text-xs text-primary/70">
+            We&apos;ll tailor the demo outline for this course.
+          </p>
+        </div>
+      ) : null}
+      <Input name="course" type="hidden" value={initialCourse ?? ""} readOnly />
       <Input name="name" placeholder="Full Name" required />
       <Input name="email" type="email" placeholder="Email Address" required />
       <Input name="phone" placeholder="Phone Number" />

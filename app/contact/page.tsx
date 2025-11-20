@@ -9,7 +9,12 @@ export const metadata: Metadata = {
     "Talk to TechElevate about Cisco, Cloud, Cybersecurity, DevOps, or corporate technology training programs.",
 };
 
-export default function ContactPage() {
+type ContactPageProps = {
+  searchParams?: { course?: string };
+};
+
+export default function ContactPage({ searchParams }: ContactPageProps) {
+  const selectedCourse = searchParams?.course;
   return (
     <div className="space-y-12">
       <PageBanner
@@ -24,7 +29,7 @@ export default function ContactPage() {
             Our concierge responds in under 24 hours on business days.
           </p>
           <div className="mt-6">
-            <ContactForm />
+            <ContactForm initialCourse={selectedCourse} />
           </div>
         </div>
 
