@@ -10,21 +10,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FlagshipCoursesPanel } from "@/components/layout/flagship-courses-panel";
-import type { CourseTreeNode } from "@/lib/content";
 import { AdaptivePathPlanner } from "@/components/layout/adaptive-path";
-
-type ServiceContent = {
-  slug: string;
-  title: string;
-  hero: {
-    title: string;
-    description: string;
-  };
-  coverage: string[];
-  courses: string[];
-  courseDetails?: Record<string, { title: string; topics: string[] }[]>;
-  courseTree?: CourseTreeNode[];
-};
+import type { ServiceContent } from "@/lib/service-types";
 
 type ServiceTemplateProps = {
   data: ServiceContent;

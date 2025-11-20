@@ -1,12 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { getAssessment } from "@/lib/assessment";
 
 type Response = Record<string, string>;
 
-const AssessmentPage = () => {
+const AssessmentContent = () => {
   const searchParams = useSearchParams();
   const course = searchParams?.get("course") ?? "Flagship Course";
   const questions = useMemo(() => getAssessment(course), [course]);
@@ -140,6 +140,22 @@ const AssessmentPage = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const AssessmentPage = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
+          <div className="text-center">
+            <p className="text-lg font-semibold">Loading assessment...</p>
+          </div>
+        </div>
+      }
+    >
+      <AssessmentContent />
+    </Suspense>
   );
 };
 
