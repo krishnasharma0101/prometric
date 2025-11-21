@@ -50,6 +50,7 @@ export const ServiceTemplate = ({
           courses={data.courses}
           courseDetails={data.courseDetails}
           courseTree={data.courseTree}
+          serviceSlug={data.slug}
         />
         <AdaptivePathPlanner
           courseTree={data.courseTree}

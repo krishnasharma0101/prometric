@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { PrequalAssessment } from "@/components/layout/prequal-assessment";
+import { enrollInCourse, isEnrolled } from "@/lib/enrollment";
 
 type Module = {
   title: string;
@@ -22,6 +23,7 @@ type FlagshipCoursesPanelProps = {
   courses: string[];
   courseDetails?: Record<string, Module[]>;
   courseTree?: CourseTreeNode[];
+  serviceSlug?: string;
 };
 
 const fallbackModule: Module = {
@@ -43,6 +45,7 @@ export const FlagshipCoursesPanel = ({
   courses,
   courseDetails,
   courseTree,
+  serviceSlug,
 }: FlagshipCoursesPanelProps) => {
   const treeCourses = useMemo(() => {
     if (courseTree?.length) return flattenTree(courseTree);
@@ -233,6 +236,17 @@ export const FlagshipCoursesPanel = ({
           <Link href={`/contact?course=${encodeURIComponent(activeCourse)}`}>
             Book a Demo for {activeCourse}
           </Link>
+        </Button>
+        <Button
+          onClick={() => {
+            enrollInCourse(activeCourse, serviceSlug);
+            // Show success feedback
+            alert(`Successfully enrolled in ${activeCourse}! Check "My Courses" to view your enrolled courses.`);
+          }}
+          disabled={isEnrolled(activeCourse)}
+          className="mt-3 w-full bg-gradient-to-r from-emerald-600 to-teal-400 text-base font-semibold hover:from-emerald-700 hover:to-teal-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isEnrolled(activeCourse) ? "Already Enrolled" : "Enroll Now"}
         </Button>
         <div className="mt-6">
           <PrequalAssessment course={activeCourse} />

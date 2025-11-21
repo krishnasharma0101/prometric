@@ -27,6 +27,16 @@ export const PrequalAssessment = ({ course }: PrequalAssessmentProps) => {
       if (data?.type === "assessment-result" && data?.course === course) {
         setScore(data.score);
         setLevel(data.level);
+        // Dispatch custom event for parent components
+        window.dispatchEvent(
+          new CustomEvent("assessment-completed", {
+            detail: {
+              course: data.course,
+              score: data.score,
+              level: data.level,
+            },
+          })
+        );
       }
     };
     window.addEventListener("message", handler);
