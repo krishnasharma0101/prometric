@@ -131,8 +131,8 @@ export default function MyCoursesPage() {
       alert("Please select a learning mode first.");
       return;
     }
-    // Here you can add logic to start the course in the selected mode
-    console.log(`Starting ${courseName} in ${mode} mode`);
+    // Navigate to course page with mode parameter
+    window.location.href = `/course/${encodeURIComponent(courseName)}?mode=${mode}`;
   };
 
   return (

@@ -926,6 +926,128 @@ export const serviceSlugs = [
       "Azure Administrator",
       "Google Professional Cloud Architect",
     ],
+    courseTree: [
+      {
+        label: "AWS Certifications",
+        description: "Amazon Web Services certification paths from foundational to expert level.",
+        children: [
+          {
+            label: "Foundational",
+            courses: [
+              { name: "AWS Certified Cloud Practitioner", note: "Core" },
+            ],
+          },
+          {
+            label: "Associate Level",
+            courses: [
+              { name: "AWS Certified Solutions Architect - Associate", note: "Core" },
+              { name: "AWS Certified Developer - Associate" },
+              { name: "AWS Certified SysOps Administrator - Associate" },
+            ],
+          },
+          {
+            label: "Professional Level",
+            courses: [
+              { name: "AWS Certified Solutions Architect - Professional", note: "Core" },
+              { name: "AWS Certified DevOps Engineer - Professional" },
+            ],
+          },
+          {
+            label: "Specialty Certifications",
+            courses: [
+              { name: "AWS Certified Security - Specialty" },
+              { name: "AWS Certified Machine Learning - Specialty" },
+              { name: "AWS Certified Advanced Networking - Specialty" },
+              { name: "AWS Certified Data Analytics - Specialty" },
+              { name: "AWS Certified Database - Specialty" },
+              { name: "AWS Certified SAP on AWS - Specialty" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Microsoft Azure Certifications",
+        description: "Microsoft Azure role-based certifications for cloud professionals.",
+        children: [
+          {
+            label: "Fundamentals",
+            courses: [
+              { name: "Azure Fundamentals (AZ-900)", note: "Core" },
+            ],
+          },
+          {
+            label: "Administrator",
+            courses: [
+              { name: "Azure Administrator (AZ-104)", note: "Core" },
+            ],
+          },
+          {
+            label: "Developer",
+            courses: [
+              { name: "Azure Developer Associate (AZ-204)" },
+            ],
+          },
+          {
+            label: "Solutions Architect",
+            courses: [
+              { name: "Azure Solutions Architect Expert (AZ-305)", note: "Core" },
+            ],
+          },
+          {
+            label: "DevOps Engineer",
+            courses: [
+              { name: "Azure DevOps Engineer Expert (AZ-400)" },
+            ],
+          },
+          {
+            label: "Security Engineer",
+            courses: [
+              { name: "Azure Security Engineer Associate (AZ-500)" },
+            ],
+          },
+          {
+            label: "Specialty",
+            courses: [
+              { name: "Azure AI Engineer Associate (AI-102)" },
+              { name: "Azure Data Engineer Associate (DP-203)" },
+              { name: "Azure Network Engineer Associate (AZ-700)" },
+              { name: "Azure Database Administrator Associate (DP-300)" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Google Cloud Certifications",
+        description: "Google Cloud Platform certifications for cloud architects and engineers.",
+        children: [
+          {
+            label: "Foundational",
+            courses: [
+              { name: "Google Cloud Digital Leader", note: "Core" },
+            ],
+          },
+          {
+            label: "Associate",
+            courses: [
+              { name: "Google Cloud Associate Cloud Engineer" },
+            ],
+          },
+          {
+            label: "Professional",
+            courses: [
+              { name: "Google Cloud Professional Cloud Architect", note: "Core" },
+              { name: "Google Cloud Professional Cloud Developer" },
+              { name: "Google Cloud Professional Cloud DevOps Engineer" },
+              { name: "Google Cloud Professional Cloud Security Engineer" },
+              { name: "Google Cloud Professional Cloud Network Engineer" },
+              { name: "Google Cloud Professional Data Engineer" },
+              { name: "Google Cloud Professional Machine Learning Engineer" },
+              { name: "Google Cloud Professional Cloud Database Engineer" },
+            ],
+          },
+        ],
+      },
+    ],
     courseDetails: {
       "AWS Solutions Architect": [
         {
@@ -1021,6 +1143,108 @@ export const serviceSlugs = [
       "Governance + compliance accelerators for regulated sectors",
     ],
     courses: ["CEH", "CompTIA Security+", "CISM", "CISSP"],
+    courseTree: [
+      {
+        label: "EC-Council Certifications",
+        description: "Ethical hacking and cybersecurity certifications from EC-Council.",
+        children: [
+          {
+            label: "Entry Level",
+            courses: [
+              { name: "Certified Ethical Hacker (CEH)", note: "Core" },
+              { name: "Certified Network Defender (CND)" },
+            ],
+          },
+          {
+            label: "Advanced",
+            courses: [
+              { name: "CEH Practical" },
+              { name: "EC-Council Certified Security Analyst (ECSA)" },
+              { name: "EC-Council Certified Incident Handler (ECIH)" },
+            ],
+          },
+          {
+            label: "Expert Level",
+            courses: [
+              { name: "EC-Council Certified Security Specialist (ECSS)" },
+              { name: "EC-Council Certified Penetration Testing Professional (CPENT)" },
+              { name: "Licensed Penetration Tester (LPT) Master" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "CompTIA Security Certifications",
+        description: "CompTIA security certification stack from foundational to advanced.",
+        children: [
+          {
+            label: "Foundational",
+            courses: [
+              { name: "CompTIA Security+", note: "Core" },
+              { name: "CompTIA Network+" },
+              { name: "CompTIA CySA+" },
+            ],
+          },
+          {
+            label: "Advanced",
+            courses: [
+              { name: "CompTIA PenTest+" },
+              { name: "CompTIA CASP+" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "ISC2 Certifications",
+        description: "International Information System Security Certification Consortium credentials.",
+        children: [
+          {
+            label: "Associate",
+            courses: [
+              { name: "ISC2 Associate" },
+            ],
+          },
+          {
+            label: "Professional",
+            courses: [
+              { name: "Certified Information Systems Security Professional (CISSP)", note: "Core" },
+              { name: "Certified Cloud Security Professional (CCSP)" },
+              { name: "Certified Information Security Manager (CISM)" },
+              { name: "Certified Authorization Professional (CAP)" },
+            ],
+          },
+          {
+            label: "Specialty",
+            courses: [
+              { name: "Certified Secure Software Lifecycle Professional (CSSLP)" },
+              { name: "HealthCare Information Security and Privacy Practitioner (HCISPP)" },
+              { name: "Systems Security Certified Practitioner (SSCP)" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "SANS / GIAC Certifications",
+        description: "Global Information Assurance Certification from SANS Institute.",
+        children: [
+          {
+            label: "Foundational",
+            courses: [
+              { name: "GIAC Security Essentials (GSEC)" },
+            ],
+          },
+          {
+            label: "Specialized",
+            courses: [
+              { name: "GIAC Certified Incident Handler (GCIH)" },
+              { name: "GIAC Penetration Tester (GPEN)" },
+              { name: "GIAC Web Application Penetration Tester (GWAPT)" },
+              { name: "GIAC Certified Forensic Analyst (GCFA)" },
+            ],
+          },
+        ],
+      },
+    ],
     courseDetails: {
       CEH: [
         {
@@ -1113,6 +1337,92 @@ export const serviceSlugs = [
       "Certified Kubernetes Administrator",
       "HashiCorp Terraform Associate",
       "AZ-400 DevOps Engineer",
+    ],
+    courseTree: [
+      {
+        label: "Kubernetes Certifications",
+        description: "Cloud Native Computing Foundation (CNCF) Kubernetes certifications.",
+        children: [
+          {
+            label: "Kubernetes Administrator",
+            courses: [
+              { name: "Certified Kubernetes Administrator (CKA)", note: "Core" },
+              { name: "Certified Kubernetes Application Developer (CKAD)" },
+              { name: "Certified Kubernetes Security Specialist (CKS)" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "HashiCorp Certifications",
+        description: "Infrastructure automation and cloud certifications from HashiCorp.",
+        children: [
+          {
+            label: "Associate Level",
+            courses: [
+              { name: "HashiCorp Certified: Terraform Associate", note: "Core" },
+              { name: "HashiCorp Certified: Vault Associate" },
+              { name: "HashiCorp Certified: Consul Associate" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Docker Certifications",
+        description: "Container platform certifications from Docker.",
+        children: [
+          {
+            label: "Docker Certifications",
+            courses: [
+              { name: "Docker Certified Associate (DCA)" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Red Hat Certifications",
+        description: "OpenShift and Linux certifications from Red Hat.",
+        children: [
+          {
+            label: "OpenShift",
+            courses: [
+              { name: "Red Hat Certified Specialist in OpenShift Administration" },
+              { name: "Red Hat Certified Specialist in OpenShift Application Development" },
+            ],
+          },
+          {
+            label: "Linux & Automation",
+            courses: [
+              { name: "Red Hat Certified Engineer (RHCE)" },
+              { name: "Red Hat Certified Specialist in Ansible Automation" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Microsoft DevOps",
+        description: "Microsoft Azure DevOps and GitHub certifications.",
+        children: [
+          {
+            label: "DevOps Engineer",
+            courses: [
+              { name: "Azure DevOps Engineer Expert (AZ-400)", note: "Core" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "GitLab Certifications",
+        description: "GitLab CI/CD and DevOps platform certifications.",
+        children: [
+          {
+            label: "GitLab Certifications",
+            courses: [
+              { name: "GitLab Certified Associate" },
+            ],
+          },
+        ],
+      },
     ],
     courseDetails: {
       "Certified Kubernetes Administrator": [
