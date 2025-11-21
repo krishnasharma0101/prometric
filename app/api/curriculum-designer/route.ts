@@ -44,16 +44,8 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiKey = process.env.OPENROUTER_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json(
-        {
-          error:
-            "OPENROUTER_API_KEY is not configured. Add it to your environment variables.",
-        },
-        { status: 500 },
-      );
-    }
+    // Hardcoded API key for OpenRouter
+    const apiKey = "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";
 
     const prompt = buildPrompt({
       profile,
