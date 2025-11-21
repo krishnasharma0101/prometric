@@ -1,15 +1,12 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
+import { siteConfig } from "@/lib/site";
 
-const model = process.env.OPENAI_MODEL ?? "gpt-4o-mini";
+const sanitizeHeaderValue = (value?: string | null) => {
+  if (!value) return undefined;
+  return value.replace(/[\u0100-\uFFFF]/g, "");
+};
 
-const openai =
-  process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY.length > 0
-    ? new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-        baseURL: process.env.OPENAI_BASE_URL,
-      })
-    : null;
+const openrouterKey = sanitizeHeaderValue(process.env.OPENROUTER_API_KEY);
 
 type PathRequest = {
   prompt: string;
@@ -18,7 +15,7 @@ type PathRequest = {
 
 export async function POST(req: Request) {
   try {
-    if (!openai) {
+    if (!openrouterKey) {
       return NextResponse.json(
         {
           summary:
@@ -81,27 +78,48 @@ Respond ONLY with valid JSON matching:
 Use 2-5 steps, reference only courses from this list (if relevant): ${courseListString}.
 If the learner needs fundamentals before courses, include a step describing that with a custom description but keep courses aligned with the list.`;
 
-    const completion = await openai.chat.completions.create({
-      model,
-      temperature: 0.4,
-      max_tokens: 600,
-      messages: [
-        { role: "system", content: systemPrompt },
-        {
-          role: "user",
-          content: `Learner input: ${body.prompt}`,
-        },
-      ],
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${openrouterKey}`,
+        "HTTP-Referer": siteConfig.url,
+        "X-Title": siteConfig.name,
+      },
+      body: JSON.stringify({
+        model: "x-ai/grok-4.1-fast:free",
+        temperature: 0.4,
+        messages: [
+          { role: "system", content: systemPrompt },
+          {
+            role: "user",
+            content: `Learner input: ${body.prompt}`,
+          },
+        ],
+      }),
     });
 
-    const content = completion.choices[0]?.message?.content;
-    if (!content) {
-      throw new Error("Empty response from OpenAI");
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(errorText || "Failed to contact OpenRouter.");
     }
+
+    const json = await response.json();
+    const content: string | undefined =
+      json?.choices?.[0]?.message?.content?.trim();
+
+    if (!content) {
+      throw new Error("Empty response from OpenRouter.");
+    }
+
+    const cleaned = content
+      .replace(/```json/gi, "")
+      .replace(/```/g, "")
+      .trim();
 
     let payload;
     try {
-      payload = JSON.parse(content);
+      payload = JSON.parse(cleaned);
     } catch (error) {
       throw new Error("Unable to parse planner response.");
     }
