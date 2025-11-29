@@ -168,7 +168,7 @@ export const achievements = [
 
 export const teamMembers = [
   {
-    name: "Sonali Pawar",
+    name: "",
     role: "Managing Director",
     bio: "",
   },
