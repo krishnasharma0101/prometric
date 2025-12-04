@@ -41,14 +41,14 @@ export async function POST(request: Request) {
 
     if (resend) {
       await resend.emails.send({
-        from: "TechElevate <noreply@techelevate.institute>",
+        from: "Mitralearn <noreply@mitralearn.institute>",
         to: process.env.CONTACT_INBOX as string,
         subject,
         html,
       });
     } else if (transporter && process.env.CONTACT_INBOX) {
       await transporter.sendMail({
-        from: `"TechElevate Web" <${process.env.SMTP_USER}>`,
+        from: `"Mitralearn Web" <${process.env.SMTP_USER}>`,
         to: process.env.CONTACT_INBOX,
         subject,
         html,

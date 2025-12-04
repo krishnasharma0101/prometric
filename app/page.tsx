@@ -97,7 +97,7 @@ export default function Home() {
           <StatsGrid />
           <div className="flex flex-wrap gap-4">
             <Button asChild>
-              <Link href="/about">About TechElevate</Link>
+              <Link href="/about">About Mitralearn</Link>
             </Button>
             <Button asChild variant="ghost" className="border border-primary/30 text-primary">
               <Link href="/services">View Services</Link>

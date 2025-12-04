@@ -29,7 +29,7 @@ export default function BlogDetailPage({ params }: BlogPageProps) {
         <p>{post.excerpt}</p>
         <p>
           Enterprises across networking, security, and cloud lean on
-          TechElevate’s enablement squads to kickstart modernization. This blog
+          Mitralearn’s enablement squads to kickstart modernization. This blog
           template illustrates how you can publish long-form narratives for SEO
           while keeping the UI clean and on-brand.
         </p>
