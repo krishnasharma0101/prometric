@@ -6,9 +6,9 @@ import { teamMembers } from "@/lib/content";
 import { TeamCard } from "@/components/ui/team-card";
 
 export const metadata: Metadata = {
-  title: "About TechElevate",
+  title: "About Mitralearn",
   description:
-    "TechElevate partners with enterprises to upskill engineers through Cisco, Cloud, Cybersecurity, DevOps, and Linux academies.",
+    "Mitralearn partners with enterprises to upskill engineers through Cisco, Cloud, Cybersecurity, DevOps, and Linux academies.",
 };
 
 export default function AboutPage() {
@@ -23,7 +23,7 @@ export default function AboutPage() {
         <div className="rounded-[30px] border border-white/30 bg-white/80 p-8 shadow-card">
           <h2 className="text-2xl font-semibold text-slate-900">Our Story</h2>
           <p className="mt-4 text-slate-600">
-            TechElevate was founded by former Cisco and cloud learning partner
+            Mitralearn was founded by former Cisco and cloud learning partner
             leaders who saw that enterprises needed more than static bootcamps.
             We build academies that blend diagnostics, hands-on labs, mentors,
             and ROI dashboards, making training a strategic advantage.

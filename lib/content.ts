@@ -143,7 +143,7 @@ export const testimonials = [
     name: "Priya Nair",
     title: "Head of Network Engineering, NetAxis",
     quote:
-      "TechElevate blended CCIE workshops with remote labs so our engineers could deploy SD-WAN flawlessly the next quarter.",
+      "Mitralearn blended CCIE workshops with remote labs so our engineers could deploy SD-WAN flawlessly the next quarter.",
   },
   {
     name: "Marcus Allen",

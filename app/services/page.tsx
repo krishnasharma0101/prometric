@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 export const metadata: Metadata = {
   title: "All Services",
   description:
-    "Browse Cisco, Cloud, Cybersecurity, DevOps, Corporate Training, and Certification Support services from TechElevate.",
+    "Browse Cisco, Cloud, Cybersecurity, DevOps, Corporate Training, and Certification Support services from Mitralearn.",
 };
 
 export default function ServicesPage() {

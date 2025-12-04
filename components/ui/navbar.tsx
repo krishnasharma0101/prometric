@@ -46,9 +46,9 @@ export const Navbar = () => {
         >
           <Link href="/" className="flex items-center gap-2 text-lg font-bold">
             <span className="rounded-full bg-gradient-to-r from-primary to-secondary px-3 py-1 text-sm text-white">
-              TE
+              ML
             </span>
-            TechElevate
+            Mitralearn
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium text-slate-600 lg:flex">
             {navItems.map((item) => (

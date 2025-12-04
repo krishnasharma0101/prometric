@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Talk to TechElevate about Cisco, Cloud, Cybersecurity, DevOps, or corporate technology training programs.",
+    "Talk to Mitralearn about Cisco, Cloud, Cybersecurity, DevOps, or corporate technology training programs.",
 };
 
 type ContactPageProps = {
@@ -56,7 +56,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
           </div>
           <div className="overflow-hidden rounded-[32px] border border-white/30 shadow-card">
             <iframe
-              title="TechElevate Pune"
+              title="Mitralearn Pune"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.2649830501715!2d73.85674397518341!3d18.46931738262702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c06203dd4611%3A0x4b4af149048393ca!2sPune%20International%20Exhibition%20%26%20Convention%20Center!5e0!3m2!1sen!2sin!4v1732034580000!5m2!1sen!2sin"
               width="100%"
               height="380"

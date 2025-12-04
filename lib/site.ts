@@ -1,20 +1,20 @@
 export const siteConfig = {
-  name: "TechElevate Institute",
-  shortName: "TechElevate",
+  name: "Mitralearn Institute",
+  shortName: "Mitralearn",
   description:
     "Enterprise-grade technology training and certification programs for Cisco, Cloud, Cybersecurity, DevOps, and Linux teams.",
-  url: "https://techelevate.institute",
+  url: "https://mitralearn.institute",
   ogImage: "/og-image.svg",
   contact: {
-    email: "hello@techelevate.institute",
+    email: "hello@mitralearn.institute",
     phone: "+91 9022286245",
     address: "",
     hours: "Mon - Fri, 9:00 AM - 6:00 PM IST",
   },
   social: {
-    linkedin: "https://www.linkedin.com/company/techelevate",
-    twitter: "https://twitter.com/techelevate",
-    youtube: "https://youtube.com/@techelevate",
+    linkedin: "https://www.linkedin.com/company/mitralearn",
+    twitter: "https://twitter.com/mitralearn",
+    youtube: "https://youtube.com/@mitralearn",
   },
 };
 
